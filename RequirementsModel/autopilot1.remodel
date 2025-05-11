@@ -1,2 +1,20 @@
-UseCaseModel Autopilot1 {Service Autopilot1System {} Service ThirdPartyServices {}}
+UseCaseModel Autopilot1 {
+
+	UC::activateAutonomousDrivingMode include verifyEnvironmentalConditions
+	UC::verifyEnvironmentalConditions
+	UC::performSystemCheckup extend viewDiagnosticReport
+	UC::viewDiagnosticReport
+
+	Actor Driver {
+		activateAutonomousDrivingMode
+		verifyEnvironmentalConditions
+	}
+
+	Actor Maintainer {
+		performSystemCheckup
+		viewDiagnosticReport
+	}
+
+	Service Autopilot1System {} Service ThirdPartyServices {}}
 DomainModel Autopilot1 {}
+
