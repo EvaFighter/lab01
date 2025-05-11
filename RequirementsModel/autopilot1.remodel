@@ -371,19 +371,29 @@ DomainModel Autopilot1 {
 
 	Entity PowerSystem {
 		Status : String
+	[Refer]
+		PowerSystemtoHardware : Hardware Association
 	}
 
 	Entity InitializationStatus {
 		Status : String
+	[Refer]
+		InitializationStatustoStaticFunctionStatus : StaticFunctionStatus Association
+		InitializationStatustoDynamicFunctionStatus : DynamicFunctionStatus Association
 	}
 
-	Entity EnvironmentCheck {
+	Entity EnvironmentCheck extends VehicleStatus {
 		Status : String
 		IsSafe : Boolean
+	[Refer]
+		EnvironmentChecktoRoutePlanner : RoutePlanner Association
 	}
 
 	Entity SystemStatus {
 		CanDrive : Boolean
+	[Refer]
+		SystemStatustoVehicleStatus : VehicleStatus Association
+		SystemStatustoInitializationStatus : InitializationStatus Association
 	}
 
 	Entity DrivingMode {
@@ -392,35 +402,51 @@ DomainModel Autopilot1 {
 
 	Entity NavigationSystem {
 		SignalAvailable : Boolean
+	[Refer]
+		NavigationSystemtoDynamicFunctionStatus : DynamicFunctionStatus Association
 	}
 
 	Entity RoutePlanner {
 		Status : String
 		Route : String
+	[Refer]
+		RoutePlannertoDynamicFunctionStatus : DynamicFunctionStatus Association
 	}
 
 	Entity VehicleStatus {
 		IsInTrouble : Boolean
+	[Refer]
+		VehicleStatustoStaticFunctionStatus : StaticFunctionStatus Association
+		VehicleStatustoDynamicFunctionStatus : DynamicFunctionStatus Association
 	}
 
-	Entity Hardware {
+	Entity Hardware extends NavigationSystem {
 		Checked : Boolean
 		Status : String
+	[Refer]
+		HardwaretoVehicleStatus : VehicleStatus Association
 	}
 
 	Entity Software {
 		VersionChecked : Boolean
 		IsCorrectVersion : Boolean
+	[Refer]
+		SoftwaretoNavigationSystem : NavigationSystem Association
+		SoftwaretoVehicleStatus : VehicleStatus Association
 	}
 
 	Entity StaticFunctionStatus {
 		Checked : Boolean
 		IsNormal : Boolean
+	[Refer]
+		StaticFunctionStatustoDrivingMode : DrivingMode Association
 	}
 
 	Entity DynamicFunctionStatus {
 		Checked : Boolean
 		IsNormal : Boolean
+	[Refer]
+		DynamicFunctionStatustoDrivingMode : DrivingMode Association
 	}
 
 }
