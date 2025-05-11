@@ -156,7 +156,13 @@ UseCaseModel Autopilot1 {
 
 	}
 
-	Service Autopilot1System {} Service ThirdPartyServices {}
+	Service Autopilot1System {
+
+	}
+
+	Service ThirdPartyServices {
+
+	}
 
 	Service ActivateAutonomousDrivingModeService {
 
@@ -197,6 +203,225 @@ UseCaseModel Autopilot1 {
 
 	}
 
+	Contract ActivateAutonomousDrivingModeService::turnOnPower() : Boolean {
+
+		definition:
+			p:PowerSystem = PowerSystem.current
+
+		precondition:
+			p.status <> "ON"
+
+		postcondition:
+			p.status = "ON" and
+			result = true
+	}
+
+	Contract ActivateAutonomousDrivingModeService::initializeCheck() : Boolean {
+
+		definition:
+			c:InitializationStatus = InitializationStatus.current
+
+		precondition:
+			c.status = "NotInitialized"
+
+		postcondition:
+			c.status = "Initialized" and
+			result = true
+	}
+
+	Contract ActivateAutonomousDrivingModeService::environmentCheck() : Boolean {
+
+		definition:
+			e:EnvironmentCheck = EnvironmentCheck.current
+
+		precondition:
+			e.status = "Unchecked"
+
+		postcondition:
+			e.status = "Checked" and
+			e.isSafe = true and
+			result = true
+	}
+
+	Contract ActivateAutonomousDrivingModeService::checkIfAutonomousDrivingIsPossible() : Boolean {
+
+		definition:
+			s:SystemStatus = SystemStatus.current
+
+		precondition:
+			s.canDrive = false
+
+		postcondition:
+			s.canDrive = true and
+			result = true
+	}
+
+	Contract ActivateAutonomousDrivingModeService::enterAutonomousDriving() : Boolean {
+
+		definition:
+			m:DrivingMode = DrivingMode.current
+
+		precondition:
+			m.mode <> "Autonomous"
+
+		postcondition:
+			m.mode = "Autonomous" and
+			result = true
+	}
+
+	Contract VerifyEnvironmentalConditionsService::checkIfNavigationSystemHasSignal() : Boolean {
+
+		definition:
+			n:NavigationSystem = NavigationSystem.current
+
+		precondition:
+			n.signalAvailable = false
+
+		postcondition:
+			n.signalAvailable = true and
+			result = true
+	}
+
+	Contract VerifyEnvironmentalConditionsService::planRoute() : Boolean {
+
+		definition:
+			r:RoutePlanner = RoutePlanner.current
+
+		precondition:
+			r.status = "Unplanned"
+
+		postcondition:
+			r.status = "Planned" and
+			r.route and
+			result = true
+	}
+
+	Contract VerifyEnvironmentalConditionsService::checkIfVehicleIsInTrouble() : Boolean {
+
+		definition:
+			v:VehicleStatus = VehicleStatus.current
+
+		precondition:
+			v.isInTrouble = true
+
+		postcondition:
+			v.isInTrouble = false and
+			result = true
+	}
+
+	Contract PerformSystemCheckupService::checkHardwareStatus() : Boolean {
+
+		definition:
+			h:Hardware = Hardware.current
+
+		precondition:
+			h.checked = false
+
+		postcondition:
+			h.checked = true and
+			h.status = "OK" and
+			result = true
+	}
+
+	Contract PerformSystemCheckupService::checkIfSoftwareVersionIsCorrect() : Boolean {
+
+		definition:
+			s:Software = Software.current
+
+		precondition:
+			s.versionChecked = false
+
+		postcondition:
+			s.versionChecked = true and
+			s.isCorrectVersion = true and
+			result = true
+	}
+
+	Contract PerformSystemCheckupService::checkIfStaticFunctionsAreNormal() : Boolean {
+
+		definition:
+			s:StaticFunctionStatus = StaticFunctionStatus.current
+
+		precondition:
+			s.checked = false
+
+		postcondition:
+			s.checked = true and
+			s.isNormal = true and
+			result = true
+	}
+
+	Contract PerformSystemCheckupService::checkIfDynamicFunctionsAreNormal() : Boolean {
+
+		definition:
+			d:DynamicFunctionStatus = DynamicFunctionStatus.current
+
+		precondition:
+			d.checked = false
+
+		postcondition:
+			d.checked = true and
+			d.isNormal = true and
+			result = true
+	}
+
 }
-DomainModel Autopilot1 {}
+
+DomainModel Autopilot1 {
+
+	Entity PowerSystem {
+		Status : String
+	}
+
+	Entity InitializationStatus {
+		Status : String
+	}
+
+	Entity EnvironmentCheck {
+		Status : String
+		IsSafe : Boolean
+	}
+
+	Entity SystemStatus {
+		CanDrive : Boolean
+	}
+
+	Entity DrivingMode {
+		Mode : String
+	}
+
+	Entity NavigationSystem {
+		SignalAvailable : Boolean
+	}
+
+	Entity RoutePlanner {
+		Status : String
+		Route : String
+	}
+
+	Entity VehicleStatus {
+		IsInTrouble : Boolean
+	}
+
+	Entity Hardware {
+		Checked : Boolean
+		Status : String
+	}
+
+	Entity Software {
+		VersionChecked : Boolean
+		IsCorrectVersion : Boolean
+	}
+
+	Entity StaticFunctionStatus {
+		Checked : Boolean
+		IsNormal : Boolean
+	}
+
+	Entity DynamicFunctionStatus {
+		Checked : Boolean
+		IsNormal : Boolean
+	}
+
+}
 
