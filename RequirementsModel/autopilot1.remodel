@@ -1,0 +1,2 @@
+UseCaseModel Autopilot1 {Service Autopilot1System {} Service ThirdPartyServices {}}
+DomainModel Autopilot1 {}
