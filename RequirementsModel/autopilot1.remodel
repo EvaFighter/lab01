@@ -365,19 +365,65 @@ UseCaseModel Autopilot1 {
 			result = true
 	}
 
+	Contract ViewDiagnosticReportService::checkIfAnyProblemExists() : Boolean {
+
+		definition:
+			p:ProblemReport = ProblemReport.current
+
+		precondition:
+			p.Checked = false
+
+		postcondition:
+			p.Checked = true and
+			p.RelatedHardware.Status <> "OK" or
+			p.RelatedSoftware.IsCorrectVersion = false or
+			p.RelatedStaticFunction.IsNormal = false or
+			p.RelatedDynamicFunction.IsNormal = false and
+			p.HasProblem = true and
+			result = true
+	}
+
+	Contract ViewDiagnosticReportService::requestHardwareEngineerInspection() : Boolean {
+
+		definition:
+			t:TroubleReport = TroubleReport.current
+
+		precondition:
+			t.hardwareEngineerNotified = false
+
+		postcondition:
+			t.hardwareEngineerNotified = true and
+			result = true
+	}
+
+	Contract ViewDiagnosticReportService::reportSoftwareFunctionAbnormality() : Boolean {
+
+		definition:
+			s:SoftwareAbnormalityReport = SoftwareAbnormalityReport.current
+
+		precondition:
+			s.reported = false
+
+		postcondition:
+			s.reported = true and
+			result = true
+	}
+
 }
 
 DomainModel Autopilot1 {
 
 	Entity PowerSystem {
 		Status : String
-	[Refer]
+
+		[Refer]
 		PowerSystemtoHardware : Hardware Association
 	}
 
 	Entity InitializationStatus {
 		Status : String
-	[Refer]
+
+		[Refer]
 		InitializationStatustoStaticFunctionStatus : StaticFunctionStatus Association
 		InitializationStatustoDynamicFunctionStatus : DynamicFunctionStatus Association
 	}
@@ -385,13 +431,15 @@ DomainModel Autopilot1 {
 	Entity EnvironmentCheck extends VehicleStatus {
 		Status : String
 		IsSafe : Boolean
-	[Refer]
+
+		[Refer]
 		EnvironmentChecktoRoutePlanner : RoutePlanner Association
 	}
 
 	Entity SystemStatus {
 		CanDrive : Boolean
-	[Refer]
+
+		[Refer]
 		SystemStatustoVehicleStatus : VehicleStatus Association
 		SystemStatustoInitializationStatus : InitializationStatus Association
 	}
@@ -402,20 +450,23 @@ DomainModel Autopilot1 {
 
 	Entity NavigationSystem {
 		SignalAvailable : Boolean
-	[Refer]
+
+		[Refer]
 		NavigationSystemtoDynamicFunctionStatus : DynamicFunctionStatus Association
 	}
 
 	Entity RoutePlanner {
 		Status : String
 		Route : String
-	[Refer]
+
+		[Refer]
 		RoutePlannertoDynamicFunctionStatus : DynamicFunctionStatus Association
 	}
 
 	Entity VehicleStatus {
 		IsInTrouble : Boolean
-	[Refer]
+
+		[Refer]
 		VehicleStatustoStaticFunctionStatus : StaticFunctionStatus Association
 		VehicleStatustoDynamicFunctionStatus : DynamicFunctionStatus Association
 	}
@@ -423,14 +474,16 @@ DomainModel Autopilot1 {
 	Entity Hardware extends NavigationSystem {
 		Checked : Boolean
 		Status : String
-	[Refer]
+
+		[Refer]
 		HardwaretoVehicleStatus : VehicleStatus Association
 	}
 
 	Entity Software {
 		VersionChecked : Boolean
 		IsCorrectVersion : Boolean
-	[Refer]
+
+		[Refer]
 		SoftwaretoNavigationSystem : NavigationSystem Association
 		SoftwaretoVehicleStatus : VehicleStatus Association
 	}
@@ -438,15 +491,43 @@ DomainModel Autopilot1 {
 	Entity StaticFunctionStatus {
 		Checked : Boolean
 		IsNormal : Boolean
-	[Refer]
+
+		[Refer]
 		StaticFunctionStatustoDrivingMode : DrivingMode Association
 	}
 
 	Entity DynamicFunctionStatus {
 		Checked : Boolean
 		IsNormal : Boolean
-	[Refer]
+
+		[Refer]
 		DynamicFunctionStatustoDrivingMode : DrivingMode Association
+	}
+
+	Entity ProblemReport {
+		Checked : Boolean
+		HasProblem : Boolean
+
+		[Refer]
+		ProblemReportToSystemStatus : SystemStatus Association
+		ProblemReportToHardware : Hardware Association
+		ProblemReportToSoftware : Software Association
+		ProblemReportToStaticFunction : StaticFunctionStatus Association
+		ProblemReportToDynamicFunction : DynamicFunctionStatus Association
+	}
+
+	Entity TroubleReport {
+		HardwareEngineerNotified : Boolean
+
+		[Refer]
+		TroubleReportToHardware : Hardware Association
+	}
+
+	Entity SoftwareAbnormalityReport {
+		Reported : Boolean
+
+		[Refer]
+		SoftwareAbnormalityReportToSoftware : Software Association
 	}
 
 }
