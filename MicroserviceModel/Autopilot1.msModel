@@ -1,0 +1,143 @@
+MicroServiceModel Autopilot1 {
+	MicroService MaintainerService {
+		ProvidedInterface viewDiagnosticReport{
+			[Operation]
+			viewDiagnosticReport
+		}
+		ProvidedInterface performSystemCheckup{
+			[Operation]
+			performSystemCheckup
+		}
+		ProvidedInterface manageInitializationStatus{
+			[Operation]
+			createInitializationStatus
+			queryInitializationStatus
+			updateInitializationStatus
+			modifyInitializationStatus
+		}
+		ProvidedInterface manageDynamicFunctionStatus{
+			[Operation]
+			createDynamicFunctionStatus
+			queryDynamicFunctionStatus
+			updateDynamicFunctionStatus
+			modifyDynamicFunctionStatus
+		}
+		RequiredInterface manageHardware
+		RequiredInterface manageRoutePlanner
+		RequiredInterface manageVehicleStatus
+		RequiredInterface manageStaticFunctionStatus
+		RequiredInterface manageDrivingMode
+		DomainModel MaintainerService {
+			 Entity PowerSystem {
+				Status : String
+				[Refer]
+			}
+			 Entity EnvironmentCheck {
+				Status : String
+				IsSafe : Boolean
+				[Refer]
+			}
+			 Entity Software {
+				VersionChecked : Boolean
+				IsCorrectVersion : Boolean
+				[Refer]
+				SoftwaretoNavigationSystem : NavigationSystem  Association
+			}
+			 Entity NavigationSystem {
+				SignalAvailable : Boolean
+				[Refer]
+				NavigationSystemtoDynamicFunctionStatus : DynamicFunctionStatus  Association
+			}
+			 Entity InitializationStatus {
+				Status : String
+				[Refer]
+				InitializationStatustoDynamicFunctionStatus : DynamicFunctionStatus  Association
+			}
+			 Entity DynamicFunctionStatus {
+				Checked : Boolean
+				IsNormal : Boolean
+				[Refer]
+			}
+		}
+	}
+	MicroService DriverService {
+		ProvidedInterface verifyEnvironmentalConditions{
+			[Operation]
+			verifyEnvironmentalConditions
+		}
+		ProvidedInterface activateAutonomousDrivingMode{
+			[Operation]
+			activateAutonomousDrivingMode
+		}
+		ProvidedInterface manageHardware{
+			[Operation]
+			createHardware
+			queryHardware
+			updateHardware
+			modifyHardware
+		}
+		ProvidedInterface manageRoutePlanner{
+			[Operation]
+			createRoutePlanner
+			queryRoutePlanner
+			updateRoutePlanner
+			modifyRoutePlanner
+		}
+		ProvidedInterface manageVehicleStatus{
+			[Operation]
+			createVehicleStatus
+			queryVehicleStatus
+			updateVehicleStatus
+			modifyVehicleStatus
+		}
+		ProvidedInterface manageStaticFunctionStatus{
+			[Operation]
+			createStaticFunctionStatus
+			queryStaticFunctionStatus
+			updateStaticFunctionStatus
+			modifyStaticFunctionStatus
+		}
+		ProvidedInterface manageDrivingMode{
+			[Operation]
+			createDrivingMode
+			queryDrivingMode
+			updateDrivingMode
+			modifyDrivingMode
+		}
+		RequiredInterface manageInitializationStatus
+		RequiredInterface manageDynamicFunctionStatus
+		DomainModel DriverService {
+			 Entity SystemStatus {
+				CanDrive : Boolean
+				[Refer]
+				SystemStatustoVehicleStatus : VehicleStatus  Association
+			}
+			 Entity DrivingMode {
+				Mode : String
+				[Refer]
+			}
+			 Entity Hardware {
+				Checked : Boolean
+				Status : String
+				[Refer]
+				HardwaretoVehicleStatus : VehicleStatus  Association
+			}
+			 Entity StaticFunctionStatus {
+				Checked : Boolean
+				IsNormal : Boolean
+				[Refer]
+				StaticFunctionStatustoDrivingMode : DrivingMode  Association
+			}
+			 Entity RoutePlanner {
+				Status : String
+				Route : String
+				[Refer]
+			}
+			 Entity VehicleStatus {
+				IsInTrouble : Boolean
+				[Refer]
+				VehicleStatustoStaticFunctionStatus : StaticFunctionStatus  Association
+			}
+		}
+	}
+}
