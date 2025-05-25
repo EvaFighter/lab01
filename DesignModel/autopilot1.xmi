@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designModel="http://www.example.org/designModel">
+  <designModel:Controller description="Controller" label="Controller"/>
+  <designModel:DesignModel>
+    <classdiagram name="Autopilot1">
+      <class name="PowerSystem">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getStatus"/>
+        <operation name="setStatus">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <reference name="PowerSystemtoHardware" type="Association" class="/1/@classdiagram/@class.8"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="Status">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+        </attribute>
+      </class>
+      <class name="InitializationStatus">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getStatus"/>
+        <operation name="setStatus">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <reference name="InitializationStatustoStaticFunctionStatus" type="Association" class="/1/@classdiagram/@class.10"/>
+        <reference name="InitializationStatustoDynamicFunctionStatus" type="Association" class="/1/@classdiagram/@class.11"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="Status">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+        </attribute>
+      </class>
+      <class name="EnvironmentCheck" superClass="/1/@classdiagram/@class.7">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getStatus"/>
+        <operation name="setStatus">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getIsSafe"/>
+        <operation name="setIsSafe">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <reference name="EnvironmentChecktoRoutePlanner" type="Association" class="/1/@classdiagram/@class.6"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="Status">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+        </attribute>
+        <attribute name="IsSafe">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+      </class>
+      <class name="SystemStatus">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getCanDrive"/>
+        <operation name="setCanDrive">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <reference name="SystemStatustoVehicleStatus" type="Association" class="/1/@classdiagram/@class.7"/>
+        <reference name="SystemStatustoInitializationStatus" type="Association" class="/1/@classdiagram/@class.1"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="CanDrive">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+      </class>
+      <class name="DrivingMode">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getMode"/>
+        <operation name="setMode">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="Mode">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+        </attribute>
+      </class>
+      <class name="NavigationSystem">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getSignalAvailable"/>
+        <operation name="setSignalAvailable">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <reference name="NavigationSystemtoDynamicFunctionStatus" type="Association" class="/1/@classdiagram/@class.11"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="SignalAvailable">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+      </class>
+      <class name="RoutePlanner">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getStatus"/>
+        <operation name="setStatus">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getRoute"/>
+        <operation name="setRoute">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <reference name="RoutePlannertoDynamicFunctionStatus" type="Association" class="/1/@classdiagram/@class.11"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="Status">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+        </attribute>
+        <attribute name="Route">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+        </attribute>
+      </class>
+      <class name="VehicleStatus">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getIsInTrouble"/>
+        <operation name="setIsInTrouble">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <reference name="VehicleStatustoStaticFunctionStatus" type="Association" class="/1/@classdiagram/@class.10"/>
+        <reference name="VehicleStatustoDynamicFunctionStatus" type="Association" class="/1/@classdiagram/@class.11"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="IsInTrouble">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+      </class>
+      <class name="Hardware" superClass="/1/@classdiagram/@class.5">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getChecked"/>
+        <operation name="setChecked">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <operation name="getStatus"/>
+        <operation name="setStatus">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <reference name="HardwaretoVehicleStatus" type="Association" class="/1/@classdiagram/@class.7"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="Checked">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+        <attribute name="Status">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+        </attribute>
+      </class>
+      <class name="Software">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getVersionChecked"/>
+        <operation name="setVersionChecked">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <operation name="getIsCorrectVersion"/>
+        <operation name="setIsCorrectVersion">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <reference name="SoftwaretoNavigationSystem" type="Association" class="/1/@classdiagram/@class.5"/>
+        <reference name="SoftwaretoVehicleStatus" type="Association" class="/1/@classdiagram/@class.7"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="VersionChecked">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+        <attribute name="IsCorrectVersion">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+      </class>
+      <class name="StaticFunctionStatus">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getChecked"/>
+        <operation name="setChecked">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <operation name="getIsNormal"/>
+        <operation name="setIsNormal">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <reference name="StaticFunctionStatustoDrivingMode" type="Association" class="/1/@classdiagram/@class.4"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="Checked">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+        <attribute name="IsNormal">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+      </class>
+      <class name="DynamicFunctionStatus">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getChecked"/>
+        <operation name="setChecked">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <operation name="getIsNormal"/>
+        <operation name="setIsNormal">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <reference name="DynamicFunctionStatustoDrivingMode" type="Association" class="/1/@classdiagram/@class.4"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="Checked">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+        <attribute name="IsNormal">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+      </class>
+      <class name="ProblemReport">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getChecked"/>
+        <operation name="setChecked">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <operation name="getHasProblem"/>
+        <operation name="setHasProblem">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <reference name="ProblemReportToSystemStatus" type="Association" class="/1/@classdiagram/@class.3"/>
+        <reference name="ProblemReportToHardware" type="Association" class="/1/@classdiagram/@class.8"/>
+        <reference name="ProblemReportToSoftware" type="Association" class="/1/@classdiagram/@class.9"/>
+        <reference name="ProblemReportToStaticFunction" type="Association" class="/1/@classdiagram/@class.10"/>
+        <reference name="ProblemReportToDynamicFunction" type="Association" class="/1/@classdiagram/@class.11"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="Checked">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+        <attribute name="HasProblem">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+      </class>
+      <class name="TroubleReport">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getHardwareEngineerNotified"/>
+        <operation name="setHardwareEngineerNotified">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <reference name="TroubleReportToHardware" type="Association" class="/1/@classdiagram/@class.8"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="HardwareEngineerNotified">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+      </class>
+      <class name="SoftwareAbnormalityReport">
+        <operation name="addLinkOneToOne">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addLinkOneToMany">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="getReported"/>
+        <operation name="setReported">
+          <parameter name="newValue">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+          </parameter>
+        </operation>
+        <reference name="SoftwareAbnormalityReportToSoftware" type="Association" class="/1/@classdiagram/@class.9"/>
+        <reference name="manager" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.15"/>
+        <attribute name="Reported">
+          <type xsi:type="designModel:PrimitiveTypeCS" name="Boolean"/>
+        </attribute>
+      </class>
+      <class name="EntityManager">
+        <operation name="findObject">
+          <parameter name="ClassName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="condition">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="findObjects">
+          <parameter name="ClassName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="condition">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="createObject">
+          <parameter name="ClassName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="addObject">
+          <parameter name="ClassName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="releaseObject">
+          <parameter name="ClassName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="ob">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="Class"/>
+          </parameter>
+        </operation>
+        <operation name="findLinkedObject">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="condition">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <operation name="findLinkedObjects">
+          <parameter name="assoName">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+          <parameter name="condition">
+            <type xsi:type="designModel:PrimitiveTypeCS" name="String"/>
+          </parameter>
+        </operation>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.0"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.1"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.2"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.3"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.4"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.5"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.6"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.7"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.8"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.9"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.10"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.11"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.12"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.13"/>
+        <reference name="class" ismultiple="true" type="Association" class="/1/@classdiagram/@class.14"/>
+        <reference name="service" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.16"/>
+        <reference name="service" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.17"/>
+        <reference name="service" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.18"/>
+        <reference name="service" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.19"/>
+        <reference name="service" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.20"/>
+        <reference name="service" isReverseAssociation="true" type="Association" class="/1/@classdiagram/@class.21"/>
+      </class>
+      <class description="Autopilot1System" name="Autopilot1System">
+        <reference name="manager" type="Association" class="/1/@classdiagram/@class.15"/>
+      </class>
+      <class description="ThirdPartyServices" name="ThirdPartyServices">
+        <reference name="manager" type="Association" class="/1/@classdiagram/@class.15"/>
+      </class>
+      <class description="ActivateAutonomousDrivingModeService" name="ActivateAutonomousDrivingModeService">
+        <reference name="manager" type="Association" class="/1/@classdiagram/@class.15"/>
+      </class>
+      <class description="VerifyEnvironmentalConditionsService" name="VerifyEnvironmentalConditionsService">
+        <reference name="manager" type="Association" class="/1/@classdiagram/@class.15"/>
+      </class>
+      <class description="PerformSystemCheckupService" name="PerformSystemCheckupService">
+        <reference name="manager" type="Association" class="/1/@classdiagram/@class.15"/>
+      </class>
+      <class description="ViewDiagnosticReportService" name="ViewDiagnosticReportService">
+        <reference name="manager" type="Association" class="/1/@classdiagram/@class.15"/>
+      </class>
+    </classdiagram>
+    <sequencediagram name="Autopilot1"/>
+  </designModel:DesignModel>
+</xmi:XMI>

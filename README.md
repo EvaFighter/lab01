@@ -1,9 +1,14 @@
 # lab01
 lab01 
 
-lab02
+# lab02
+## task1
 ![Alt text](image.png)
 ![Alt text](image-1.png)
+
+## task2
+![Alt text](image-2.png)
+
 
 
 好的！根据我们之前一起讨论的基于OCL和服务契约方法设计的自动驾驶控制系统的需求模型（你正在建模的服务包括 ActivateAutonomousDrivingModeService、VerifyEnvironmentalConditionsService、PerformSystemCheckupService，涉及实体如 PowerSystem、InitializationStatus、EnvironmentCheck、SystemStatus、DrivingMode 等），我可以为你用自然语言梳理出一套系统设计模型和相应的微服务架构设计。
